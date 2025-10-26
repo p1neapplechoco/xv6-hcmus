@@ -197,6 +197,8 @@ UPROGS=\
 	$U/_sleeptest\
 	$U/_testhello \
 	$U/_primes \
+	$U/_xargs\
+
 
 
 
