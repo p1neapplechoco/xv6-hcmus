@@ -198,6 +198,9 @@ UPROGS=\
 	$U/_testhello \
 	$U/_primes \
 	$U/_find\
+	$U/_xargs\
+
+
 
 
 
