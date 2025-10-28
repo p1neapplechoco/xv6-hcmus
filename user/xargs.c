@@ -22,15 +22,17 @@ int main(int argc, char *argv[])
         for (int j = 0; j < n; j++) {
             if (buf[j] == '\n') {
                 buf[j] = 0;
+                
+                if (j > head) { // non-empty line
+                    args[cnt_args] = buf + head; // move pointer to offset head
+                    args[cnt_args + 1] = 0;
 
-                args[cnt_args] = buf + head; // move pointer to offset head
-                args[cnt_args + 1] = 0;
-
-                if (fork() == 0) {
-                    exec(args[0], args);
-                    exit(1); // error
+                    if (fork() == 0) {
+                        exec(args[0], args);
+                        exit(1); // error
+                    }
+                    wait((int*)0);
                 }
-                wait((int*)0);
 
                 head = j + 1;
             }
