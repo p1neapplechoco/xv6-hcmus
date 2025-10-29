@@ -49,7 +49,6 @@ int main(int argc, char *argv[])
         close(fd[1]);
         primes(fd[0]);
         close(fd[0]);
-        exit(0);
     }
     else
     {
@@ -59,7 +58,7 @@ int main(int argc, char *argv[])
             write(fd[1], &i, sizeof(int));
         }
         close(fd[1]);
-        exit(0);
+        wait(0);
     }
 
     exit(0);
