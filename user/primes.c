@@ -60,6 +60,5 @@ int main(int argc, char *argv[])
         close(fd[1]);
         wait(0);
     }
-
     exit(0);
 }
