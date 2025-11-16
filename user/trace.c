@@ -3,9 +3,9 @@
 #include "user/user.h"
 
 int
-main(int argc, char *argv[])
+main(int argc, char *argv[]) // Input: (mask, command)
 {
-  // Kiểm tra xem có đủ đối số không
+  // Check xem có đủ đối số không
   if(argc < 3){
     printf("Usage: trace <mask> <command>\n");
     exit(1);
@@ -17,11 +17,10 @@ main(int argc, char *argv[])
     exit(1);
   }
   
-  // DÒNG NÀY LÀ QUAN TRỌNG NHẤT
   // Thực thi lệnh (argv[2]) với mảng đối số bắt đầu từ argv[2]
   exec(argv[2], &argv[2]);
   
-  // Nếu exec quay trở lại, nó đã thất bại. In lỗi.
+  // Nếu exec quay lại, nó đã fail, lỗi.
   printf("trace: exec %s failed\n", argv[2]);
   exit(1);
 }

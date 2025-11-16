@@ -113,7 +113,7 @@ sys_trace(void)
   argint(0, &mask); 
   
   // Lưu mask vào tiến trình hiện tại (bạn sẽ làm điều này sau)
-  myproc()->trace_mask = mask; // Giả sử bạn đã thêm trace_mask vào struct proc
+  myproc()->trace_mask = mask;
 
-  return 0; // Trả về 0 để báo thành công
+  return 0; // báo thành công
 }

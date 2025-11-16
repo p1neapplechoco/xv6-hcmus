@@ -165,9 +165,6 @@ void syscall(void)
     // and store its return value in p->trapframe->a0
     p->trapframe->a0 = syscalls[num]();
 
-    // =======================================================
-    // == THÊM ĐOẠN MÃ CỦA BẠN VÀO ĐÂY ==
-    // =======================================================
     // Kiểm tra xem mask của tiến trình có được bật và
     // bit tương ứng với system call hiện tại có được bật không.
     // (1 << num) sẽ tạo ra một số với chỉ bit thứ `num` được bật.
@@ -179,10 +176,6 @@ void syscall(void)
       // p->trapframe->a0: Giá trị trả về của system call
       printf("%d: syscall %s -> %ld\n", p->pid, syscall_names[num], p->trapframe->a0);
     }
-    // =======================================================
-    // == KẾT THÚC ĐOẠN MÃ CỦA BẠN ==
-    // =======================================================
-
   }
   else
   {
