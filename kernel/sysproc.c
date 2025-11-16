@@ -103,3 +103,17 @@ sys_hello(void)
   printf("Hello, %s!\n", name);
   return 0;
 }
+
+// Hàm xử lý cho system call trace()
+uint64
+sys_trace(void)
+{
+  int mask;
+  // Lấy đối số đầu tiên (kiểu int) từ user space
+  argint(0, &mask); 
+  
+  // Lưu mask vào tiến trình hiện tại (bạn sẽ làm điều này sau)
+  myproc()->trace_mask = mask; // Giả sử bạn đã thêm trace_mask vào struct proc
+
+  return 0; // Trả về 0 để báo thành công
+}

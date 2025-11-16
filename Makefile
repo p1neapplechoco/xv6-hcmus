@@ -201,6 +201,8 @@ UPROGS=\
 	$U/_xargs\
 	$U/_pingpong\
 	$U/_testpingpong\
+	$U/_trace\
+
 
 
 ifeq ($(LAB),syscall)
