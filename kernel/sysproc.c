@@ -131,10 +131,7 @@ sys_sysinfo(void)
   argaddr(0, &addr);
 
   // Thu thập thông tin hệ thống
-  acquire(&tickslock);
   info.freemem = freemem();
-  release(&tickslock);
-
   info.nproc = getnproc();
 
   // Sao chép thông tin từ kernel space sang user space
