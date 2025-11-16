@@ -112,7 +112,7 @@ sys_trace(void)
   // Lấy đối số đầu tiên (kiểu int) từ user space
   argint(0, &mask); 
   
-  // Lưu mask vào tiến trình hiện tại (bạn sẽ làm điều này sau)
+  // Lưu mask vào tiến trình hiện tại
   myproc()->trace_mask = mask;
 
   return 0; // báo thành công
