@@ -5,6 +5,8 @@
 #include "memlayout.h"
 #include "spinlock.h"
 #include "proc.h"
+#include "sysinfo.h"
+// #include "kalloc.c"
 
 uint64
 sys_exit(void)
@@ -116,4 +118,28 @@ sys_trace(void)
   myproc()->trace_mask = mask;
 
   return 0; // báo thành công
+}
+
+// Hàm xử lý cho system call sysinfo()
+uint64
+sys_sysinfo(void)
+{
+  uint64 addr; // Địa chỉ của struct sysinfo trong không gian người dùng
+  struct sysinfo info; // Biến struct sysinfo để lưu thông tin hệ thống
+
+  // Lấy địa chỉ từ đối số đầu tiên
+  argaddr(0, &addr);
+
+  // Thu thập thông tin hệ thống
+  acquire(&tickslock);
+  info.freemem = freemem();
+  release(&tickslock);
+
+  info.nproc = getnproc();
+
+  // Sao chép thông tin từ kernel space sang user space
+  if (copyout(myproc()->pagetable, addr, (char *)&info, sizeof(info)) < 0)
+    return -1; // Trả về -1 nếu sao chép thất bại
+
+  return 0; // Trả về 0 nếu thành công
 }
