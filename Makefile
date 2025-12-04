@@ -203,6 +203,7 @@ UPROGS=\
 	$U/_testpingpong\
 	$U/_trace\
 	$U/_sysinfotest\
+	$U/_pgacc\
 
 
 
