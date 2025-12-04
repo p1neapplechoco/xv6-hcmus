@@ -18,7 +18,8 @@ def test_sleep_no_args():
         'sleep',
         'echo OK'
     ]))
-    r.match('^OK$', no=["exec .* failed", "$ sleep\n$"])
+    r.match('^OK$', no=
+["exec .* failed", "$ sleep\n$"])
 
 @test(10, "sleep, makes syscall")
 def test_sleep():
