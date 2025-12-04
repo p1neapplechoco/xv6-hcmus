@@ -39,3 +39,5 @@ entry("uptime");
 entry("hello");
 entry("trace");
 entry("sysinfo");
+entry("pgaccess");
+

@@ -140,3 +140,41 @@ sys_sysinfo(void)
 
   return 0; // Trả về 0 nếu thành công
 }
+
+// Hàm xử lý cho sys_pgaccess()
+uint64
+sys_pgaccess(void)
+{
+  uint64 start;
+  int npages; 
+  uint64 uabits; 
+
+  argaddr(0, &start);
+  argint(1, &npages);
+  argaddr(2, &uabits);
+
+
+  if (npages < 0 || npages > 32) return -1;
+
+  struct proc *p = myproc();
+  uint32 abits = 0;
+
+  for (int i = 0; i < npages; i++) {
+    uint64 va = start + (uint64)i * PGSIZE;
+    pte_t *pte = walk(p->pagetable, va, 0);
+    if (pte == 0) return -1;
+    if ((*pte & PTE_V) == 0) return -1;
+
+    if (*pte & PTE_A) {
+      abits |= (1U << i);
+      *pte &= ~PTE_A;   
+    }
+  }
+
+  sfence_vma();
+
+  if (copyout(p->pagetable, uabits, (char*)&abits, sizeof(abits)) < 0)
+    return -1;
+
+  return 0;
+}
