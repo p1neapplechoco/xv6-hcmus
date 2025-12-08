@@ -20,6 +20,7 @@ int mkdir(const char *);
 int chdir(const char *);
 int dup(int);
 int getpid(void);
+int ugetpid(void);
 char *sbrk(int);
 int sleep(int);
 int uptime(void);
@@ -27,8 +28,6 @@ int hello(char *);
 int trace(int);
 int sysinfo(struct sysinfo *);
 int pgaccess(void *start, int npages, unsigned int *abits);
-
-
 
 // ulib.c
 int stat(const char *, struct stat *);
